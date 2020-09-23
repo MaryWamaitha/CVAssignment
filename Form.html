@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="form.css" />
+    <!--<script type="text/javascript" src="formas.js"></script>-->
+    <title>Contact Details</title>
+    <style>
+        body {
+            background-color: #faf2e4;
+            margin: 1 20%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        
+        h3 {
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="alert"></div>
+    <img src="career.jpg" width="750" height="200" alt="career image" margin-bottom:0px float: top>
+
+    <form id="myform" method="post">
+        <!-- action="index.html"  -->
+        <br>
+        <h3>RESUME CONTACT DETAILS</h3>
+        <p>Hello, Please fill in the following details which will be used in creating your resume.</p>
+
+        <label for="full-name">Full Name</label>
+        <input type="text" name="name" required/>
+        <label for="address">Address</label>
+        <input type="text" name="address" />
+        <label for="Email">Email</label>
+        <input type="email" name="email" required />
+        <label for="phone">Phone Number</label>
+        <input type="text" name="phone" required placeholder="...(+233) (0)54 345 2345..." oninvalid="alert('(+233) (0)54 345 2345 format\ne.g:\n024 634 0987\n+233 50 234 0987');" pattern="^(\s+)?\+?\(?((\d{3})[-.\s]?|[0])?\)?\d{2}[-.\s]?\d{3}[-.\s]?\d{4}?(\s+)?$"
+        />
+        <label for="LinkedIn">LinkedIn URL</label>
+        <input type="text" name="LinkedIn" required />
+        <label for="Gender">Gender</label>
+        <select id='gender' name="gender" tabindex="0" required>
+        <option value="">Please select your gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+
+      </select>
+        <br>
+        <br>
+
+        <input class="button" type="submit">
+
+
+    </form>
+</body>
+<script>
+    function onFormSubmit(event) {
+        const formStuff = document.getElementById("myform");
+        event.preventDefault();
+
+
+        const name = formStuff.elements['name'].value;
+        const number = formStuff.elements['phone'].value;
+        const email = formStuff.elements['email'].value;
+        const address = formStuff.elements['address'].value;
+        const url = formStuff.elements['LinkedIn'].value;
+        const gender = document.getElementById("gender").value;
+
+        localStorage.setItem("fullName", name);
+        localStorage.setItem("address", address);
+        localStorage.setItem("email", email);
+        localStorage.setItem("phone", number);
+        localStorage.setItem("url", url);
+        localStorage.setItem("gender", gender);
+
+
+        //directing to index.html page after all data is stored
+        window.document.location = 'index.html';
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        let submit = document.getElementById("myform");
+        submit.addEventListener('submit', function(event) {
+            onFormSubmit(event);
+        });
+    });
+</script>
+
+</html>
